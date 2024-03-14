@@ -1,5 +1,5 @@
 alertA.js text/javascript
-(function(){alert('test');})();
+(function(){window.onload = function(){alert('test');}})();
 
 alertB.js text/javascript
 (function(){alert('test2');})();
