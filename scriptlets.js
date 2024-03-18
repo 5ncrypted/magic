@@ -29,65 +29,69 @@ beckyBreaker.js text/javascript
 console.js text/javascript
 (function(){
 
-function keyUpFunction(e) {
+  document.onload = function () {
 
-  if (e.ctrlKey && e.which === 16) {
+    function keyUpFunction(e) {
+
+      if (e.ctrlKey && e.which === 16) {
     
-    const html = `<!DOCTYPE html>
-      <html>
-        <head>
-          <title>Console</title>
-        </head>
-        <style>
-        html, body {
-          width: 100%;
-          margin: auto;
-        }
-        input {
-          width: 100%;
-          font-size: 40px;
-          font-family: Monospace;
-          border: none;
-          outline: none;
-        }
-        </style>
-        <body>
-          <input id="consoleBox"></input>
-        </body>
-        <script>
+        const html = `<!DOCTYPE html>
+        <html>
+          <head>
+            <title>Console</title>
+          </head>
+          <style>
+          html, body {
+            width: 100%;
+            margin: auto;
+          }
+          input {
+            width: 100%;
+            font-size: 40px;
+            font-family: Monospace;
+            border: none;
+            outline: none;
+          }
+          </style>
+          <body>
+            <input id="consoleBox"></input>
+          </body>
+          <script>
         
-          var input = document.getElementById("consoleBox");
-          input.addEventListener("keydown", function (e) {
-            if (e.code === "Enter") {
-              runThing(e.target.value);
-            }
-          });
+            var input = document.getElementById("consoleBox");
+            input.addEventListener("keydown", function (e) {
+              if (e.code === "Enter") {
+                runThing(e.target.value);
+              }
+            });
           
-        <\/script>
-      </html>`;
+          <\/script>
+        </html>`;
 
-    var url = URL.createObjectURL(
-        new Blob([html], { type: 'text/html' })
-    );
+        var url = URL.createObjectURL(
+          new Blob([html], { type: 'text/html' })
+        );
     
-    var runAThing = function(code) {
-        eval(code)
+        var runAThing = function(code) {
+          eval(code)
+        }
+
+        var win = window.open(
+          url,
+          'win',
+          'width=800,height=100,left=200,top=200'
+        );
+    
+        win.onload = function() {
+          win.runThing = runAThing;
+        };
+    
+      }
+    
     }
 
-    var win = window.open(
-        url,
-        'win',
-        'width=800,height=100,left=200,top=200'
-    );
-    
-    win.onload = function() {
-        win.runThing = runAThing;
-    };
-    
-  }
-    
-}
+    document.addEventListener('keyup', keyUpFunction, false);
 
-document.addEventListener('keyup', keyUpFunction, false);
+  }
     
 })
