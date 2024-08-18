@@ -32,5 +32,20 @@ basicUnhide.js text/javascript
 eToA.js text/javascript
 (function(){window.onload = function(){document.body.innerText = document.body.innerText.replace(/e/g, "a").replace(/E/g, "A");}})();
 
-unlockPage.js text/javascript
-(function(){window.onload = function(){document.body.contentEditable='true'; document.designMode='on'}})();
+unlockSwitch.js text/javascript
+(function(){
+    window.onload = function(){
+        var unlockSwitch = false;
+        document.addEventListener('keydown', (event) => {
+            if (event.altKey && event.key === 'q') {
+                if (unlockSwitch) {
+                    document.body.contentEditable='false';
+                    document.designMode='off';
+                } else {
+                    document.body.contentEditable='true'; document.designMode='on';
+                }
+            unlockSwitch = !unlockSwitch
+            }
+        });
+    }
+})();
