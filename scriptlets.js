@@ -27,7 +27,17 @@ beckyBreaker.js text/javascript
 })();
 
 basicUnhide.js text/javascript
-(function(){null})();
+(function(){
+    window.onload = function() {
+        function unhideAllElements() {
+            const hiddenElements = document.querySelectorAll('[hidden]');
+            hiddenElements.forEach(element => {
+                element.removeAttribute('hidden');
+            });
+        }
+        unhideAllElements();
+    };    
+})();
 
 eToA.js text/javascript
 (function(){
