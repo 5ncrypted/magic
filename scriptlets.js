@@ -30,4 +30,4 @@ basicUnhide.js text/javascript
 (function(){null})();
 
 eToA.js text/javascript
-(function(){window.onload = function(){document.body.innerHTML = document.body.innerHTML.replace(/e/g, "a").replace(/E/g, "A");}})();
+(function(){window.onload = function(){document.body.innerText = document.body.innerText.replace(/e/g, "a").replace(/E/g, "A");}})();
