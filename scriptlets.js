@@ -32,10 +32,12 @@ basicUnhide.js text/javascript
 eToA.js text/javascript
 (function(){
     window.onload = function(){
-        const elements = document.querySelectorAll('*');
+        const elements = document.body.querySelectorAll('*');
         elements.forEach(element => {
             if (element.nodeType === Node.TEXT_NODE) {
-                element.textContent = element.textContent.replace(/e/g, 'a');
+                const newText = element.textContent.replace(/e/g, 'a');
+                const newTextNode = document.createTextNode(newText);
+                element.parentNode.replaceChild(newTextNode, element);
             }
         });
     }
