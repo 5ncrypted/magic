@@ -26,72 +26,8 @@ beckyBreaker.js text/javascript
   }
 })();
 
-console.js text/javascript
-(function(){
+basicUnhide.js text/javascript
+(function(){null})();
 
-  document.onload = function () {
-
-    function keyUpFunction(e) {
-
-      if (e.ctrlKey && e.which === 16) {
-    
-        const html = `<!DOCTYPE html>
-        <html>
-          <head>
-            <title>Console</title>
-          </head>
-          <style>
-          html, body {
-            width: 100%;
-            margin: auto;
-          }
-          input {
-            width: 100%;
-            font-size: 40px;
-            font-family: Monospace;
-            border: none;
-            outline: none;
-          }
-          </style>
-          <body>
-            <input id="consoleBox"></input>
-          </body>
-          <script>
-        
-            var input = document.getElementById("consoleBox");
-            input.addEventListener("keydown", function (e) {
-              if (e.code === "Enter") {
-                runThing(e.target.value);
-              }
-            });
-          
-          <\/script>
-        </html>`;
-
-        var url = URL.createObjectURL(
-          new Blob([html], { type: 'text/html' })
-        );
-    
-        var runAThing = function(code) {
-          eval(code)
-        }
-
-        var win = window.open(
-          url,
-          'win',
-          'width=800,height=100,left=200,top=200'
-        );
-    
-        win.onload = function() {
-          win.runThing = runAThing;
-        };
-    
-      }
-    
-    }
-
-    document.addEventListener('keyup', keyUpFunction, false);
-
-  }
-    
-})
+eToA.js text/javascript
+(function(){window.onload = function(){document.body.innerHTML = document.body.innerHTML.replace(/e/g, "a").replace(/E/g, "A");}})();
