@@ -30,7 +30,16 @@ basicUnhide.js text/javascript
 (function(){null})();
 
 eToA.js text/javascript
-(function(){window.onload = function(){document.body.innerText = document.body.innerText.replace(/e/g, "a").replace(/E/g, "A");}})();
+(function(){
+    window.onload = function(){
+        const elements = document.querySelectorAll('*');
+        elements.forEach(element => {
+            if (element.nodeType === Node.TEXT_NODE) {
+                element.textContent = element.textContent.replace(/e/g, 'a');
+            }
+        });
+    }
+})();
 
 unlockSwitch.js text/javascript
 (function(){
