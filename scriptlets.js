@@ -1,5 +1,5 @@
 alertA.js text/javascript
-(function(){window.onload = function(){alert('test');}})();
+(window.onload = function(){alert('test');})();
 
 alertB.js text/javascript
 (function(){alert('test2');})();
@@ -73,54 +73,56 @@ unlockSwitch.js text/javascript
 
 magicMenu.js text/javascript
 (function(){
-    var itemSelected = 0;
-    var itemTotal = 4;
-    var menuShown = false;
-    var unlockSwitch = false;
-    document.addEventListener('keydown', (event) => {
-        if (menuShown) {
-            document.getElementById('item' + itemSelected).style = "background: #000c; color: #FFF";
-            if (event.key === 'ArrowDown') {
-                if (itemSelected < itemTotal - 1) {
-                    itemSelected++;
-                } else {
-                    itemSelected = 0;
-                }
-            } else if (event.key === 'ArrowUp') {
-                if (itemSelected > 0) {
-                    itemSelected--;
-                } else {
-                    itemSelected = itemTotal - 1;
-                }
-            } else {
-            	if (event.key === 'Enter') {
-                	if (itemSelected == 0) {
-                    	if (unlockSwitch) {
-                        	document.body.contentEditable='false';
-                        	document.designMode='off';
-                    	} else {
-                        	document.body.contentEditable='true'; document.designMode='on';
-                    	}
-                		unlockSwitch = !unlockSwitch
+    window.onload = function(){
+        var itemSelected = 0;
+        var itemTotal = 4;
+        var menuShown = false;
+        var unlockSwitch = false;
+        document.addEventListener('keydown', (event) => {
+            if (menuShown) {
+                document.getElementById('item' + itemSelected).style = "background: #000c; color: #FFF";
+                if (event.key === 'ArrowDown') {
+                    if (itemSelected < itemTotal - 1) {
+                        itemSelected++;
+                    } else {
+                        itemSelected = 0;
                     }
+                } else if (event.key === 'ArrowUp') {
+                    if (itemSelected > 0) {
+                        itemSelected--;
+                    } else {
+                        itemSelected = itemTotal - 1;
+                    }
+                } else {
+                	if (event.key === 'Enter') {
+                    	if (itemSelected == 0) {
+                        	if (unlockSwitch) {
+                            	document.body.contentEditable='false';
+                            	document.designMode='off';
+                        	} else {
+                            	document.body.contentEditable='true'; document.designMode='on';
+                        	}
+                    		unlockSwitch = !unlockSwitch
+                        }
+                    }
+                    document.getElementById('debugMenu').remove();
+                    menuShown = false;
                 }
-                document.getElementById('debugMenu').remove();
-                menuShown = false;
+                document.getElementById('item' + itemSelected).style = "background: #FF0a; color: #000;";
+            } else if (event.altKey && event.key === 'q') {
+                let newDiv = document.createElement('div');
+                newDiv.id = "debugMenu";
+                newDiv.style = "color: #FFF; font-family: monospace; position: absolute; left: 0px; top: 0px; z-index: 9999999999";
+                newDiv.innerHTML = `
+                	<div id="item0" style="background: #000c">unlock</div>
+        			<div id="item1" style="background: #000c">placeholder</div>
+        			<div id="item2" style="background: #000c">placeholder2</div>
+        			<div id="item3" style="background: #000c">placeholder3</div>`;
+            	document.body.appendChild(newDiv);
+                itemSelected = 0;
+                document.getElementById('item0').style = "background: #FF0a; color: #000;";
+                menuShown = true;
             }
-            document.getElementById('item' + itemSelected).style = "background: #FF0a; color: #000;";
-        } else if (event.altKey && event.key === 'q') {
-            let newDiv = document.createElement('div');
-            newDiv.id = "debugMenu";
-            newDiv.style = "color: #FFF; font-family: monospace; position: absolute; left: 0px; top: 0px; z-index: 9999999999";
-            newDiv.innerHTML = `
-            	<div id="item0" style="background: #000c">unlock</div>
-    			<div id="item1" style="background: #000c">placeholder</div>
-    			<div id="item2" style="background: #000c">placeholder2</div>
-    			<div id="item3" style="background: #000c">placeholder3</div>`;
-        	document.body.appendChild(newDiv);
-            itemSelected = 0;
-            document.getElementById('item0').style = "background: #FF0a; color: #000;";
-            menuShown = true;
-        }
-    });
+        });
+    }
 })
