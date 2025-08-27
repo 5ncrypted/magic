@@ -53,6 +53,11 @@ eToA.js text/javascript
     }
 })();
 
+evalSomething.js text/javascript
+(function(someCode){
+    eval(atob(someCode));
+})
+
 unlockSwitch.js text/javascript
 (function(){
     window.onload = function(){
